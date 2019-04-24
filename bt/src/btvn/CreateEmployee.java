@@ -8,6 +8,7 @@ public class CreateEmployee {
 		Scanner sc =new Scanner (System.in);
 		System.out.print("Moi ban nhap Id: ");
 		int id = sc.nextInt();
+		
 	}
 	public static void createName() {
 		Scanner sc =new Scanner (System.in);

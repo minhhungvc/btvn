@@ -3,55 +3,89 @@ package btvn;
 import java.util.Scanner;
 
 public class Employee {
+
 	protected int id;
-	protected String name;	
+	protected String name;
 	protected double salary;
 	protected int age;
 	protected boolean Married;
 	protected Job job;
 	protected int jobId;
 	protected String jobName;
-	public Employee(int id, String name, double salary, int age, boolean married, Job job) {
+
+	public Employee(String name, int id, double salary, int age, boolean Married, Job job) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.salary = salary;
 		this.age = age;
-		Married = married;
+		this.Married = Married;
 		this.job = job;
-	}
-	
-	public Employee() {
+
 	}
 
-	public void nhapThongTin() {
-		Scanner sc = new Scanner (System.in);
-		System.out.print("Id: ");
-		id = sc.nextInt();
-		System.out.print("Name: ");
-		name = sc.nextLine();
-		String i = sc.nextLine();
-		System.out.print("Salary: ");
-		salary = sc.nextDouble();
-		System.out.print("Age: ");
-		age = sc.nextInt();
-		System.out.print("Married(True or False):  ");
-		Married = sc.nextBoolean();
-		System.out.print("Job Id: ");
-		jobId = sc.nextInt();
-		String a = sc.nextLine();
-		System.out.print("Job Name: ");
-		jobName = sc.nextLine();
+	public int getId() {
+		return id;
 	}
-	public void hienThiTT() {
-		System.out.println("Id: " + id);
-		System.out.println("Name: " + name);
-		System.out.println("Salary: " + salary);
-		System.out.println("Age: " + age);
-		System.out.println("Married: " + Married);
-		System.out.println("Id job: " + jobId);
-		System.out.println("Name job: " + jobName);
-		
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public boolean getMarried() {
+		return Married;
+	}
+
+	public void setMarried(boolean married) {
+		Married = married;
+	}
+
+	public Job getJob() {
+		return job;
+	}
+
+	public void setJob(Job job) {
+		this.job = job;
+	}
+
+	public int getJobId() {
+		return jobId;
+	}
+
+	public void setJobId(int jobId) {
+		this.jobId = jobId;
+	}
+
+	public String getJobName() {
+		return jobName;
+	}
+
+	public void setJobName(String jobName) {
+		this.jobName = jobName;
+	}
+
 }
