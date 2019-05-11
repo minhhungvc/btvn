@@ -8,8 +8,8 @@ package btvn;
  *
  */
 public class Job {
-	protected int id;
-	protected String name;
+	private int id;
+	private String name;
 	
 	public Job() {}
 

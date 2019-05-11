@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class Employee {
 
-	protected int id;
-	protected String name;
-	protected double salary;
-	protected int age;
-	protected boolean Married;
-	protected Job job;
-	protected int jobId;
-	protected String jobName;
+	private int id;
+	private String name;
+	double salary;
+	int age;
+	private boolean Married;
+	private Job job;
+	private int jobId;
+	private String jobName;
 
 	public Employee(String name, int id, double salary, int age, boolean Married, Job job) {
 		super();

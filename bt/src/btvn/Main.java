@@ -9,22 +9,21 @@ import java.util.Scanner;
 	 * @author TechCare
 	 *
 	 */
-	public class Main {
+	public class Main implements EmployeeDAO{
 		public static Scanner scanner = new Scanner(System.in);
 		public static int inputNumber = 0;
 		public static int employeeNo = 0;
-		public static Employee[] employees;
-		public static boolean isEndProgram = false;
+		ArrayList<Employee> empArr = new ArrayList<>();
 		public static void main(String[] args) {
 			showMenu();
 			System.out.println("The program end!!!");
 		}
 		
 		public static void showMenu() {
+			EmployeeDAO employeeDAO= new Main();
 			do {
-				if (isEndProgram) {
-					break;
-				}
+				
+				
 				System.out.println("Choose one numbers below : ");
 				System.out.println("1: Create  new Employees");
 				System.out.println("2: Show the existing Employees");
@@ -36,23 +35,24 @@ import java.util.Scanner;
 				inputNumber = scanner.nextInt();
 				switch (inputNumber) {
 				case 1:
-					addEmployee();
-					askForContinue();
+					employeeDAO.addEmployee();
+					
 					break;
 				case 2:
-					if (employees != null && employees.length > 0) {
-						showEmployee();
-					} else {
-						System.out.println("Please add new employee first!");
-						System.out.println("-------------------------------");
-					}
+					//if (employeeDAO != null && employeeDAO.length > 0) {
+						//employeeDAO.showEmployee();
+					//} else {
+						//System.out.println("Please add new employee first!");
+						//System.out.println("-------------------------------");
+					//}
+					employeeDAO.showEmployee();
 					askForContinue();
 					break;
 				
 				case 3:
 					System.out.println("Please input name to serach :");
 					String nameInput = scanner.next();
-					Employee employee = searchByName(nameInput);
+					Employee employee = employeeDAO.searchByName(nameInput);
 					askForContinue();
 				case 4:
 					System.out.println("Please input name to search :");
@@ -61,7 +61,7 @@ import java.util.Scanner;
 					double newSalary =scanner.nextDouble();
 					System.out.println("Please input new age :");
 					int newAge =scanner.nextInt();
-					updateEmployeeByName(nameInputUpdate,newSalary,newAge);
+					employeeDAO.updateEmployeeByName(nameInputUpdate,newSalary,newAge);
 					askForContinue();
 						
 				case 5:
@@ -74,11 +74,15 @@ import java.util.Scanner;
 
 			} while (inputNumber != 5);
 		}
-		
-		public static void addEmployee() {
+		private static void askForContinue() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public  void addEmployee() {
 			System.out.println("How many employee you want to create? : ");
 			employeeNo = scanner.nextInt();
-			employees = new Employee[employeeNo];
 			for (int i = 0; i < employeeNo; i++) {
 				System.out.println("Please input the information of employee[" + i + 1 + "] : ");
 				System.out.println("Name : ");
@@ -93,24 +97,26 @@ import java.util.Scanner;
 				System.out.println("Job name : ");
 				String jobName = scanner.next();
 				Employee employee = new Employee(name, i + 1, salary, age, true, new Job(i + 1, jobName));
-				employees[i] = employee;
+				empArr.add(employee);
 			}
 		}
-		
-		public static void showEmployee() {
+		@Override
+		public  void showEmployee() {
 			System.out.println("----------------List of employee-----------");
+			System.out.println("The number of employees is: "+empArr.size());
 			System.out.println("ID      Name      Salary     Age      Married     Job name");
-			for (int i = 0; i < employees.length; i++) {
-				System.out.println(employees[i].getId() + "       " + employees[i].getName() + "       " + employees[i].getSalary() + "       "+ employees[i].getAge() + "       "+ employees[i].getMarried() +"       " + employees[i].getJobName());
+			for  (Employee employee : empArr) {
+				System.out.println(employee.getId() + "       " + employee.getName() + "       " + employee.getSalary() + "       "+ employee.getAge() + "       "+ employee.getMarried() +"       " + employee.getJobName());
 			}
 		}
-		public static Employee searchByName(String nameInput) {
+		@Override
+		public Employee searchByName(String nameInput) {
 			Employee employee = null;
-			for(int i=0;i<employees.length;i++) {
-				if (nameInput.equals(employees[i].name)) {
-					employee = employees[i];
+			for(int i=0;i<empArr.size();i++) {
+				if (nameInput.equals(empArr.get(i).getName())) {
+					employee = empArr.get(i);
 					System.out.println("ID      Name      Salary     Age     Married    Job name");
-					System.out.println(employees[i].getId() + "       " + employees[i].getName() + "       " + employees[i].getSalary() + "       "+ employees[i].getAge() + "       "+ employees[i].getMarried() +"       " + employees[i].getJobName());
+					System.out.println(employee.getId() + "       " + employee.getName() + "       " + employee.getSalary() + "       "+ employee.getAge() + "       "+ employee.getMarried() +"       " + employee.getJobName());
 
 					break;
 				}
@@ -118,31 +124,12 @@ import java.util.Scanner;
 			}
 			return employee;
 		}
-		public static void updateEmployeeByName(String nameInput, Double newSalary,int newAge) {
-			for(int i=0;i<employees.length;i++) {
-				if (nameInput.equals(employees[i].name)) {
-					employees[i].salary = newSalary;
-					employees[i].age = newAge;
-					System.out.println("ID      Name      Salary     Age     Married    Job name");
-					System.out.println(employees[i].getId() + "       " + employees[i].getName() + "       " + employees[i].getSalary() + "       "+ employees[i].getAge() + "       "+ employees[i].getMarried() +"       " + employees[i].getJobName());
-
-					
-					break;
+		@Override
+		public  void updateEmployeeByName(String nameInput, Double newSalary,int newAge) {
+			for(int i=0;i<empArr.size();i++) {
+				if (nameInput.equals(empArr.get(i).getName())) {
+					empArr.get(i).setSalary(newSalary);			
 				}
-			}
-		}
-				public static void askForContinue() {
-			System.out.println("Do you want to continue? (Press 3 to end proram, 0 to come back menu) : ");
-			int inputNo = scanner.nextInt();
-			switch (inputNo) {
-			case 0:
-				showMenu();
-				break;
-			case 3:
-				isEndProgram = true;
-				break;
-			default:
-				break;
-			}
+				}
 		}
 	}
