@@ -39,13 +39,13 @@ import java.util.Scanner;
 					
 					break;
 				case 2:
-					//if (employeeDAO != null && employeeDAO.length > 0) {
-						//employeeDAO.showEmployee();
-					//} else {
-						//System.out.println("Please add new employee first!");
-						//System.out.println("-------------------------------");
-					//}
-					employeeDAO.showEmployee();
+					if (employeeDAO != null && employeeDAO.length > 0) {
+						employeeDAO.showEmployee();
+					} else {
+						System.out.println("Please add new employee first!");
+						System.out.println("-------------------------------");
+					}
+					//employeeDAO.showEmployee();
 					askForContinue();
 					break;
 				
