@@ -1,0 +1,31 @@
+@charset "ISO-8859-1";
+
+html {
+	background-color: #00ff00;
+}
+
+body {
+	font-size: 20px;
+	width: 300px;
+	height: 550px;
+	background-color: #ffffff;
+	margin: 10px auto;
+	padding: 5px 20px;
+	margin-top: 100px;
+	border: 1px solid red;
+}
+
+h1 {
+	text-align: #80ff00;
+	color: #00ff00;
+}
+
+#bt1 {
+	background-color:#00ff00;
+	padding: 10px;
+}
+
+#bt2 {
+	background-color: #00ff00
+	padding: 10px;
+}
